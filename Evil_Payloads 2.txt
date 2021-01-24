@@ -1,0 +1,452 @@
+
+hxxps:// github.com/jmscory/Security-Tool-Chest
+
+hxxps:// github.com/advanced-threat-research/Yara-Rules
+hxxps:// github.com/advanced-threat-research/Yara-Rules/tree/master/APT
+hxxps:// github.com/Neo23x0/signature-base/tree/master/yara
+
+hxxps github.com/JPCERTCC/MalConfScan/blob/master/yara/rule.yara
+
+------------------------------------------------------------
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_cobaltstrike.yar
+
+73 70 72 6E 67 00   APT_CobaltStrike_Beacon_Indicator 1
+69 69 69 69 69 69 69 69    APT_CobaltStrike_Beacon_Indicator 2
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_cobaltstrike_evasive.yar
+
+\x8B\x07\x8B\x57\x04\x83\xC7\x08\x85\xC0\x75\x2C   CobaltStrike_Sleep_Decoder_Indicator
+\x69\x68\x69\x68\x69\x6B..\x69\x6B\x69\x68\x69\x6B..\x69\x6A\x69\x6B\x69\x6D....\x69\x6D\x69\x6B\x69\x6D....\x69\x6C\x69\x68\x69\x6B..\x69\x6F\x69\x68\x69\x6B..\x69\x6E\x69\x6A\x68 \x69    CobaltStrike_C2_Encoded_Config_Indicator
+\x01\x00\x00\x00....\x01\x00\x00\x00....\x02\x00\x00\x00....\x02\x00\x00\x00....\x01\x00\x00\x00....\x01\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....\x03\x00\x00\x00....    CobaltStrike_C2_Decoded_Config_Indicator
+
+hxxps github.com/Te-k/cobaltstrike/blob/master/rules.yar
+
+\xfc\xe8.\x00\x00\x00              Cobaltstrike_encrypted_beacon_x86 string 1
+\x8b.{1-3}\x83 c? \x04 [0-1] \x8b.{1-2}\x31    Cobaltstrike_encrypted_beacon_x86 string 2
+\xfc\x48\x83\xe4\xf0\xeb\x33\x5d\x8b\x45\x00\x48\x83\xc5\x04\x8b   Cobaltstrike_encrypted_beacon_x86_64
+%02d/%02d/%02d %02d:%02d:%02d    ascii   Cobaltstrike_beacon string 1
+%s as %s\\%s: %d ascii    Cobaltstrike_beacon string 2
+Started service %s on %s ascii  Cobaltstrike_beacon string 3
+beacon.dll ascii    Cobaltstrike_beacon string 4
+beacon.x64.dll ascii    Cobaltstrike_beacon string 5
+ReflectiveLoader ascii    Cobaltstrike_beacon string 6
+\x2e\x2f\x2e\x2f\x2e\x2c..\x2e\x2c\x2e\x2f     Cobaltstrike_beacon string 7
+\x69\x68\x69\x68\x69\x6b..\x69 \x6b\x69\x68     Cobaltstrike_beacon string 8
+%s (admin) ascii    Cobaltstrike_beacon string 9
+Updater.dll ascii    Cobaltstrike_beacon string 10
+LibTomMath ascii    Cobaltstrike_beacon string 11
+Content-Type: application/octet-stream ascii    Cobaltstrike_beacon string 12
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/crime_cobaltgang.yar
+
+WriteLine("(new ActiveXObject('WScript.Shell')).Run('cmd /c c:/ ascii   CobaltStrike_CN_Group_BeaconDropper String 1
+WriteLine("(new ActiveXObject('WScript.Shell')).Run('regsvr32 /s ascii   CobaltStrike_CN_Group_BeaconDropper String 2
+sh.Run(env('cmd /c set > %temp% ascii   CobaltStrike_CN_Group_BeaconDropper String 3
+sh.Run('regsvr32 /s /u /i: ascii   CobaltStrike_CN_Group_BeaconDropper String 4
+.Get('Win32_ScheduledJob').Create('regsvr32 /s /u /i: ascii   CobaltStrike_CN_Group_BeaconDropper String 5
+scrobj.dll','******** ascii   CobaltStrike_CN_Group_BeaconDropper String 6
+f.WriteLine(\" tLnk=env('%tmp%/'+lnkName+'.lnk');\"); fullword ascii   CobaltStrike_CN_Group_BeaconDropper String 7
+lnkName='office 365';  fullword ascii   CobaltStrike_CN_Group_BeaconDropper String 8
+;sh=x('WScript.Shell'); ascii   CobaltStrike_CN_Group_BeaconDropper String 9
+
+ServerSocket.EXE fullword wide    CobaltGang Malware String 1
+Incorrect version of WS2_32.dll found fullword ascii    CobaltGang Malware String 2
+Click 'Connect' to Connect to the Server.  'Disconnect' to disconnect from server. fullword wide    CobaltGang Malware String 3
+Click 'Start' to start the Server.  'Stop' to Stop it. fullword wide    CobaltGang Malware String 4
+
+\x0f\x44\xc2\xeb\x0a\x31\xc0\x80\xfa\x20\x0f\x94\xc0\x01\xc0\x5d     CobaltGang Malware String 5
+\x89\xe5\x53\x8b\x55\x08\x8b\x4d\x0c\x8a\x1c\x01\x88\x1c\x02\x83     CobaltGang Malware String 6
+\x89\xe5\x53\x8b\x55\x08\x8b\x45\x0c\x8a\x1c\x0a\x88\x1c\x08\x83     CobaltGang Malware String 7
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_armitage.yar
+
+\umeterpreter\u >" fullword ascii    Armitage component string 1
+umsf\u> fullword ascii    Armitage component string 2
+
+session.meterpreter_read fullword ascii    Armitage component string 3
+sniffer_dump fullword ascii    Armitage component string 4
+keyscan_dump fullword ascii    Armitage component string 5
+MeterpreterSession.java fullword ascii    Armitage component string 6
+
+resources/covertvpn-injector.exe fullword ascii    Armitage component string 7
+resources/browserpivot.x64.dll fullword ascii    Armitage component string 8
+resources/msfrpcd_new.bat fullword ascii    Armitage component string 9
+
+https://github.com/cuckoosandbox/community/blob/master/data/yara/shellcode/metasploit.yar
+
+\xfc\xe8 8?\x00\x00\x00\x60    Metasploit Shellcode prologue
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_invoke_psimage.yar
+
+IEX([System.Text.Encoding]::ASCII.GetString(" ascii wide
+System.Drawing.Bitmap((a Net.WebClient).OpenRead(" ascii wide
+\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00\x0D\x49\x48\x44\x52\x00\x00\x04\xE4\x00\x00\x03\xA0\x08\x06\x00\x00\x00\x9D\xAF\xA9\xE8\x00\x00\x00\x09\x70\x48\x59\x73\x00\x00\x19\xD6\x00\x00\x19\xD6\x01\x18\xD1\xCA\xED\x00\x00\x00\x07\x74\x49\x4D\x45\x07\xE1\x0C\x0F\x13\x1E\x36\x89\xC4\x28\xBF\x00\x00\x00\x07\x74\x45\x58\x74\x41\x75\x74\x68\x6F\x72\x00\xA9\xAE\xCC\x48\x00\x00\x00\x0C\x74\x45\x58\x74\x44\x65\x73\x63\x72\x69\x70\x74\x69\x6F\x6E\x00\x13\x09\x21\x23\x00\x00\x00\x0A\x74\x45\x58\x74\x43\x6F\x70\x79\x72\x69\x67\x68\x74\x00\xAC\x0F\xCC\x3A\x00\x00\x00\x0E\x74\x45\x58\x74\x43\x72\x65\x61\x74\x69\x6F\x6E\x20\x74\x69\x6D\x65\x00\x35\xF7\x0F
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_empire.yar
+
+$ProcessInfo.Arguments=\"-nop -c $DownloadCradle\" fullword ascii   Empire_Invoke_MetasploitPayload String 1
+$PowershellExe=$env:windir+'\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe' fullword ascii   Empire_Invoke_MetasploitPayload String 2
+
+$postdata=\"script=println+new+ProcessBuilder%28%27\"+$($Cmd)+\" ascii    Empire_Exploit_Jenkins String 1
+$url = \"http://\"+$($Rhost)+\":\"+$($Port)+\"/script\" fullword ascii    Empire_Exploit_Jenkins String 2
+$Cmd = [System.Web.HttpUtility]::UrlEncode($Cmd) fullword ascii    Empire_Exploit_Jenkins String 3
+
+$null = $EnumBuilder.DefineLiteral('LOGON', 0x2000) fullword ascii    Empire_Get_SecurityPackages String 1
+$EnumBuilder = $ModuleBuilder.DefineEnum('SSPI.SECPKG_FLAG', 'Public', [Int32]) fullword ascii    Empire_Get_SecurityPackages String 2
+
+$enc = Get-PostHashdumpScript fullword ascii    Empire_Invoke_PowerDump String 1
+$lmhash = DecryptSingleHash $rid $hbootkey $enc_lm_hash $almpassword; fullword ascii    Empire_Invoke_PowerDump String 2
+$rc4_key = $md5.ComputeHash($hbootkey[0..0x0f] + [BitConverter]::GetBytes($rid) + $lmntstr); fullword ascii    Empire_Invoke_PowerDump String 3
+
+Install-SSP -Path .\\mimilib.dll fullword ascii   Empire_Install_SSP
+
+$FinalShellcode.Length fullword ascii   Empire_Invoke_ShellcodeMSIL String 1
+@(0x60,0xE8,0x04,0,0,0,0x61,0x31,0xC0,0xC3) fullword ascii   Empire_Invoke_ShellcodeMSIL String 2
+@(0x41,0x54,0x41,0x55,0x41,0x56,0x41,0x57, fullword ascii   Empire_Invoke_ShellcodeMSIL String 3
+$TargetMethod.Invoke($null, @(0x11112222)) | Out-Null fullword ascii   Empire_Invoke_ShellcodeMSIL String 4
+
+$PoolPasswordCmd = 'c:\\windows\\system32\\inetsrv\\appcmd.exe list apppool fullword ascii    HKTL_Empire_PowerUp
+
+= \"TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQ ascii   Empire_Invoke_Mimikatz_Gen String 1
+Invoke-Command -ScriptBlock $RemoteScriptBlock -ArgumentList @($PEBytes64, $PEBytes32, \"Void\", 0, \"\", $ExeArgs) fullword ascii   Empire_Invoke_Mimikatz_Gen String 2
+
+$Base64Decoded = [Convert]::FromBase64String($Cpassword) fullword ascii   Empire_Get_GPPPassword String 1
+$XMlFiles += Get-ChildItem -Path \"\\\\$DomainController\\SYSVOL\" -Recurse ascii   Empire_Get_GPPPassword String 2
+function Get-DecryptedCpassword { fullword ascii   Empire_Get_GPPPassword String 3
+
+$up = Test-Connection -count 1 -Quiet -ComputerName $Computer fullword ascii    Empire_Invoke_SmbScanner String 1
+$out | add-member Noteproperty 'Password' $Password fullword ascii    Empire_Invoke_SmbScanner String 2
+
+Exploit-JBoss fullword ascii    Empire_Exploit_JBoss String 1
+$URL = \"http$($SSL)://\" + $($Rhost) + ':' + $($Port) ascii    Empire_Exploit_JBoss String 2
+\"/jmx-console/HtmlAdaptor?action=invokeOp&name=jboss.system:service ascii    Empire_Exploit_JBoss String 3
+http://blog.rvrsh3ll.net fullword ascii    Empire_Exploit_JBoss String 4
+Remote URL to your own WARFile to deploy. fullword ascii    Empire_Exploit_JBoss String 5
+
+[DllImport(\"Advapi32.dll\", SetLastError = true, EntryPoint = \"CredReadW\" ascii    Empire_dumpCredStore String 1
+[String] $Msg = \"Failed to enumerate credentials store for user '$Env:UserName'\" fullword ascii    Empire_dumpCredStore String 2
+Rtn = CredRead(\"Target\", CRED_TYPE.GENERIC, out Cred); fullword ascii    Empire_dumpCredStore String 3
+
+egress -ip $ip -port $c -delay $delay -protocol $protocol fullword ascii    Empire_Invoke_EgressCheck
+
+PowerShellRunner.pdb" fullword ascii    Empire_ReflectivePick_x64_orig String 1
+PowerShellRunner.dll" fullword wide    Empire_ReflectivePick_x64_orig String
+ReflectivePick_x64.dll" fullword ascii    Empire_ReflectivePick_x64_orig String
+
+$Result = $MiniDumpWriteDump.Invoke($null, @($ProcessHandle, fullword ascii   Empire_Out_Minidump String 1
+$ProcessFileName = \"$($ProcessName)_$($ProcessId).dmp\" fullword ascii   Empire_Out_Minidump String 2
+
+Invoke-PsExecCmd fullword ascii   Empire_Invoke_PsExec String 1
+\"[*] Executing service .EXE fullword ascii   Empire_Invoke_PsExec String 2
+$cmd = \"%COMSPEC% /C echo $Command ^> %systemroot%\\Temp\\ ascii   Empire_Invoke_PsExec String 3
+
+# upload to a specified exfil URI fullword ascii    Empire_Invoke_PostExfil String 1
+Server path to exfil to. fullword ascii    Empire_Invoke_PostExfil String 2
+
+[*] PDC: LAB-2008-DC1.lab.com fullword ascii    Empire_Invoke_SMBAutoBrute String 1
+$attempts = Get-UserBadPwdCount $userid $dcs fullword ascii   Empire_Invoke_SMBAutoBrute String 2
+
+$RightMouse   = ($ImportDll::GetAsyncKeyState([Windows.Forms.Keys]::RButton) -band 0x8000) -eq 0x8000 fullword ascii    Empire_Get_Keystrokes
+-Dll evil.dll fullword ascii    Empire_Invoke_DllInjection
+$UserMasterKeyFiles = @(, $(Get-ChildItem -Path $UserMasterKeyFolder -Force | Select-Object -ExpandProperty FullName) ) fullword ascii    Empire_KeePassConfig
+
+$Base64 = 'TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAA ascii    Empire_Invoke_SSHCommand String 1
+Invoke-SSHCommand -ip 192.168.1.100 -Username root -Password test -Command \"id\" fullword ascii    Empire_Invoke_SSHCommand String 2
+Write-Verbose \"[*] Error loading dll\" fullword ascii    Empire_Invoke_SSHCommand String 3
+
+Write-BytesToMemory -Bytes $Shellcode ascii   Empire_PowerShell_Framework_Gen1 String 1
+$GetCommandLineAAddrTemp = Add-SignedIntAsUnsigned $GetCommandLineAAddrTemp ($Shellcode1.Length) fullword ascii   Empire_PowerShell_Framework_Gen1 String 2
+
+$Result = sc.exe config $($TargetService.Name) binPath= $OriginalPath fullword ascii    Empire_PowerUp_Gen String 1
+$Result = sc.exe pause $($TargetService.Name) fullword ascii    Empire_PowerUp_Gen String 2
+
+$DllMain = [System.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer($DllMainPtr, $DllMainDelegate)" fullword ascii   Empire_PowerShell_Framework_Gen2  String 1
+#Shellcode: CallDllMain.asm" fullword ascii   Empire_PowerShell_Framework_Gen2 String 2
+
+$wc.Headers.Add(\"User-Agent\",$script:UserAgent) fullword ascii    Empire_Agent_Gen String 1
+$min = [int]((1-$script:AgentJitter)*$script:AgentDelay) fullword ascii   Empire_Agent_Gen String 2
+if ($script:AgentDelay -ne 0){ fullword ascii   Empire_Agent_Gen String 3
+
+if (($PEInfo.FileType -ieq \"DLL\") -and ($RemoteProcHandle -eq [IntPtr]::Zero)) fullword ascii   Empire_PowerShell_Framework_Gen3 String 1
+remote DLL injection ascii    Empire_PowerShell_Framework_Gen3 String 2
+
+$inveigh.SMBRelay_failed_list.Add(\"$HTTP_NTLM_domain_string\\$HTTP_NTLM_user_string $SMBRelayTarget\") fullword ascii    Empire_Invoke_InveighRelay_Gen String 1
+$NTLM_challenge_base64 = [System.Convert]::ToBase64String($HTTP_NTLM_bytes) fullword ascii    Empire_Invoke_InveighRelay_Gen String 2
+
+$KeePassXML = [xml](Get-Content -Path $KeePassXMLPath) fullword ascii   Empire_KeePassConfig_Gen
+
+Test-Port -h $h -p $Port -timeout $Timeout fullword ascii   Empire_Invoke_Portscan_Gen String 1
+1 {$nHosts=10;  $Threads = 32;   $Timeout = 5000 } fullword ascii   Empire_Invoke_Portscan_Gen String 2
+
+Where-Object { $_.GlobalAssemblyCache -And $_.Location.Split('\\\\')[-1].Equals('System.dll') } fullword ascii    Empire_PowerShell_Framework_Gen4 String 1
+# Get a handle to the module specified fullword ascii   Empire_PowerShell_Framework_Gen4 String 2
+$Kern32Handle = $GetModuleHandle.Invoke($null, @($Module)) fullword ascii   Empire_PowerShell_Framework_Gen4 String 3
+$DynAssembly = New-Object System.Reflection.AssemblyName('ReflectedDelegate') fullword ascii    Empire_PowerShell_Framework_Gen4 String 4
+
+$PELoadedInfo = Invoke-MemoryLoadLibrary -PEBytes $PEBytes -ExeArgs $ExeArgs -RemoteProcHandle $RemoteProcHandle fullword ascii   Empire_Invoke_CredentialInjection_Invoke_Mimikatz_Gen 1
+$PELoadedInfo = Invoke-MemoryLoadLibrary -PEBytes $PEBytes -ExeArgs $ExeArgs" fullword ascii    Empire_Invoke_CredentialInjection_Invoke_Mimikatz_Gen 2
+
+$Shellcode1 += 0x48 fullword ascii    Empire_Invoke_Gen String 1
+$PEHandle = [IntPtr]::Zero fullword ascii   Empire_Invoke_Gen String 2
+
+if ($ExeArgs -ne $null -and $ExeArgs -ne '') fullword ascii   Empire_PowerShell_Framework_Gen5 String 1
+$ExeArgs = \"ReflectiveExe $ExeArgs\" fullword ascii    Empire_PowerShell_Framework_Gen5 String 2
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_powershell_empire.yar
+
+$WriteProcessMemoryAddr = Get-ProcAddress kernel32.dll WriteProcessMemory fullword ascii    Empire_Invoke_BypassUAC 1
+$proc = Start-Process -WindowStyle Hidden notepad.exe -PassThru fullword ascii    Empire_Invoke_BypassUAC 2
+$Payload = Invoke-PatchDll -DllBytes $Payload -FindString "ExitThread" -ReplaceString "ExitProcess" fullword ascii    Empire_Invoke_BypassUAC 3
+$temp = [System.Text.Encoding]::UNICODE.GetBytes($szTempDllPath) fullword ascii     Empire_Invoke_BypassUAC 4
+
+script += " -" + str(option) + " "" + str(values['Value'].strip(""")) + "" fullword ascii   Empire_TrollSploit 1
+if option.lower() != "agent" and option.lower() != "computername": fullword ascii    Empire_TrollSploit 2
+[String] $Title = 'ERROR - 0xA801B720' fullword ascii    Empire_TrollSploit 3
+'Value'         :   'Lost contact with the Domain Controller.' fullword ascii   Empire_TrollSploit 4
+
+C:\PS>Add-Persistence -ScriptBlock $RickRoll -ElevatedPersistenceOption $ElevatedOptions -UserPersistenceOption $UserOptions -V ascii   Empire_Persistence 1
+# Execute the following to remove the user-level persistent payload fullword ascii    Empire_Persistence 2
+$PersistantScript = $PersistantScript.ToString().Replace('EXECUTEFUNCTION', "$PersistenceScriptName -Persist") fullword ascii   Empire_Persistence 3
+
+script += "Invoke-PortScan -noProgressMeter -f" fullword ascii    Empire_Portscan 1
+script += " | ? {$_.alive}| Select-Object HostName,@{name='OpenPorts';expression={$_.openPorts -join ','}} | ft -wrap | Out-Str ascii     Empire_Portscan 2
+
+C:\PS> Invoke-Shellcode -ProcessId $Proc.Id -Payload windows/meterpreter/reverse_https ascii    Empire_Invoke_Shellcode 1
+Injecting shellcode injecting into $((Get-Process -Id $ProcessId).ProcessName) ($ProcessId)! fullword ascii   Empire_Invoke_Shellcode 2
+$RemoteMemAddr = $VirtualAllocEx.Invoke($hProcess, [IntPtr]::Zero, $Shellcode.Length + 1, 0x3000, 0x40) # (Reserve|Commit, RWX) fullword ascii   Empire_Invoke_Shellcode 3
+
+$PEBytes64 = "TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+AAAAA4fug4AtAnNIbgBTM0hVGhpcyBwc ascii     Empire_Invoke_Mimikatz 1
+[System.Runtime.InteropServices.Marshal]::StructureToPtr($CmdLineAArgsPtr, $GetCommandLineAAddrTemp, $false) fullword ascii      Empire_Invoke_Mimikatz 2
+Write-BytesToMemory -Bytes $Shellcode2 -MemoryAddress $GetCommandLineWAddrTemp fullword ascii      Empire_Invoke_Mimikatz 3
+
+(credID, credType, domainName, userName, password, host, sid, notes) = self.mainMenu.credentials.get_credentials(credID)[0] fullword ascii     Empire_Lib_Creds_Mimikatz 1
+command = "sekurlsa::pth /user:"+self.options["user"]['Value'] fullword ascii      Empire_Lib_Creds_Mimikatz 2
+
+$DllBytes = Invoke-PatchDll -DllBytes $DllBytes -FindString "debug.bat" -ReplaceString $BatchPath fullword ascii    Empire_Write_HijackDll 1
+$DllBytes32 = "TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAA4fug4AtAnNIbgBTM0hVGhpcyBw ascii     Empire_Write_HijackDll 2
+[Byte[]]$DllBytes = [Byte[]][Convert]::FromBase64String($DllBytes32) fullword ascii     Empire_Write_HijackDll 3
+
+script += "Invoke-Mimikatz -Command ' fullword ascii    Empire_skeleton_key 1
+script += '"Skeleton key implanted. Use password 'mimikatz' for access."' fullword ascii    Empire_skeleton_key 2
+command = "misc::skeleton" fullword ascii     Empire_skeleton_key 3
+ONLY APPLICABLE ON DOMAIN CONTROLLERS! fullword ascii     Empire_skeleton_key 4
+
+ConvertTo-SecureString -asPlainText -Force;$Credential = New-Object System.Man" ascii   Empire_Invoke_WMI
+
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_mimikatz.yar
+
+sekurlsa::msv fullword ascii    Mimikatz_MemoryRule_1 String 1
+sekurlsa::wdigest fullword ascii    Mimikatz_MemoryRule_1 String 2
+sekurlsa::kerberos fullword ascii    Mimikatz_MemoryRule_1 String 3
+sekurlsa::tspkg fullword ascii    Mimikatz_MemoryRule_1 String 4
+sekurlsa::livessp fullword ascii    Mimikatz_MemoryRule_1 String 5
+sekurlsa::ssp fullword ascii    Mimikatz_MemoryRule_1 String 6
+sekurlsa::logonPasswords fullword ascii    Mimikatz_MemoryRule_1 String 7
+sekurlsa::process fullword ascii    Mimikatz_MemoryRule_1 String 8
+sekurlsa::minidump fullword ascii    Mimikatz_MemoryRule_1 String 9
+sekurlsa::pth fullword ascii    Mimikatz_MemoryRule_1 String 10
+sekurlsa::tickets fullword ascii    Mimikatz_MemoryRule_1 String 11
+sekurlsa::ekeys fullword ascii    Mimikatz_MemoryRule_1 String 12
+sekurlsa::dpapi fullword ascii    Mimikatz_MemoryRule_1 String 13
+sekurlsa::credman fullword ascii    Mimikatz_MemoryRule_1 String 14
+
+sekurlsa:: ascii    Mimikatz_MemoryRule_2 String 1
+cryptprimitives.pdb ascii    Mimikatz_MemoryRule_2 String 2
+Now is t1O ascii fullword    Mimikatz_MemoryRule_2 String 3
+ALICE123 ascii    Mimikatz_MemoryRule_2 String 4
+BOBBY456 ascii    Mimikatz_MemoryRule_2 String 5
+
+\x89\x71\x04\x89 [0-3] \x30\x8d\x04\xbd   Mimikatz_exe_x86 String 1
+\x8b\x4d e? \x8b\x45\xf4\x89\x75 e? \x89\x01\x85\xff\x74   Mimikatz_exe_x86 String 2
+\x33\xff 4? \x89\x37 4? \x8b\xf3\x45\x85 c? \x74   Mimikatz_exe_x64 String 1
+\x4c\x8b\xdf\x49 [0-3] \xc1\xe3\x04\x48 [0-3] \x8b\xcb\x4c\x03 [0-3] \xd8   Mimikatz_exe_x64 String 2
+\xa0\x00\x00\x00\x24\x02\x00\x00\x40\x00\x00\x00 [0-4] \xb8\x00\x00\x00\x6c\x02\x00\x00\x40\x00\x00\x00   Mimikatz_Sys_x86
+\x88\x01\x00\x00\x3c\x04\x00\x00\x40\x00\x00|x00 [0-4] \xe8\x02\x00\x00\xf8\x02\x00\x00\x40\x00\x00\x00   Mimikatz_exe_x64
+
+\x8b\xff\x55\x8b\xec\x6a\x00\xff\x75\x0c\xff\x75\x08\xe8 [0-3] \x5d\xc2\x08\x00    Mimikatz_wce_legacy
+\x8d\x45\xf0\x50\x8d\x45\xf8\x50\x8d\x45\xe8\x50\x6a\x00\x8d\x45\xfc\x50 [0-8] \x50\x72\x69\x6d\x61\x72\x79\x00   Mimikatz_wce_x86
+\xff \xf3\x48\x83\xec\x30\x48\x8b\xd9\x48\x8d\x15 [0-16] \x50\x72\x69\x6d\x61\x72\x79\x00  Mimikatz_wce_x64
+
+0x53, 0x48, 0x89, 0xe3, 0x48, 0x83, 0xec, 0x20, 0x66, 0x83, 0xe4, 0xc0, 0x48, 0xb9    Mimikatz with Powershell PE Reflective injection
+
+SID               : ascii fullword    Mimikatz_logfile_old String 1
+* NTLM     : ascii fullword    Mimikatz_logfile_old String 2
+Authentication Id : ascii fullword    Mimikatz_logfile_old String 3
+wdigest : ascii fullword    Mimikatz_logfile_old String
+
+sekurlsa::logonpasswords fullword wide ascii    Mimikatz_generic_string 1
+List tickets in MIT/Heimdall ccache fullword ascii wide    Mimikatz_generic_string 2
+kuhl_m_kerberos_ptt_file ; LsaCallKerberosPackage %08x fullword ascii wide    Mimikatz_generic_string 3
+* Injecting ticket : fullword wide ascii    Mimikatz_generic_string 4
+mimidrv.sys fullword wide ascii    Mimikatz_generic_string 5
+Lists LM & NTLM credentials fullword wide ascii    Mimikatz_generic_string 6
+\_ kerberos - fullword wide ascii    Mimikatz_generic_string 7
+* unknow   : fullword wide ascii    Mimikatz_generic_string 8
+\_ *Password replace -> fullword wide ascii    Mimikatz_generic_string 9
+KIWI_MSV1_0_PRIMARY_CREDENTIALS KO ascii wide    Mimikatz_generic_string 10
+\\.\mimidrv wide ascii    Mimikatz_generic_string 11
+Switch to MINIDUMP : fullword wide ascii    Mimikatz_generic_string 12
+[masterkey] with password: %s (%s user) fullword wide    Mimikatz_generic_string 13
+Clear screen (doesn't work with redirections, like PsExec) fullword wide    Mimikatz_generic_string 14
+** Session key is NULL! It means allowtgtsessionkey is not set to 1 ** fullword wide    Mimikatz_generic_string 15
+[masterkey] with DPAPI_SYSTEM (machine, then user): fullword wide    Mimikatz_generic_string 16
+
+\Release\AppInitHook.pdb" ascii    Mimikatz_Apihook String 1
+AppInitHook.dll" fullword ascii    Mimikatz_Apihook String 2
+mimikatz.exe" fullword wide    Mimikatz_Apihook String 3
+]X86Instruction->OperandSize >= Operand->Length" fullword wide    Mimikatz_Apihook String 4
+mhook\disasm-lib\disasm.c fullword wide    Mimikatz_Apihook String 5
+mhook\disasm-lib\disasm_x86.c fullword wide    Mimikatz_Apihook String 6
+VoidFunc fullword ascii    Mimikatz_Apihook String 7
+
+\x60\xba\x4f\xca\xc7\x44\x24\x34\xdc\x46\x6c\x7a\xc7\x44\x24\x38\x03\x3c\x17\x81\xc7\x44\x24\x3c\x94\xc0\x3d\xf6   Mimikatz_SkeletonKey
+
+\x48\x81\xEC\xA8\x00\x00\x00\xC7\x84\x24\x88\x00\x00\x00....\xC7\x84\x24\x8C\x00\x00\x00....\xC7\x84\x24\x90\x00\x00\x00...\x00\xC7\x84\x24\x80\x00\x00\x00\x61\x00\x00\x00\xC7\x44\x24\x40\x5B\x00\x25\x00\xC7\x44\x24\x44\x30\x00\x38\x00\xC7\x44\x24\x48\x78\x00\x3A\x00\xC7\x44\x24\x4C\x25\x00\x30\x00\xC7\x44\x24\x50\x38\x00\x78\x00\xC7\x44\x24\x54\x5D\x00\x20\x00\xC7\x44\x24\x58\x25\x00\x77\x00\xC7\x44\x24\x5C\x5A\x00\x5C\x00\xC7\x44\x24\x60\x25\x00\x77\x00\xC7\x44\x24\x64\x5A\x00\x09\x00\xC7\x44\x24\x68\x25\x00\x77\x00\xC7\x44\x24\x6C\x5A\x00\x0A\x00\xC7\x44\x24\x70\x00\x00\x00\x00\x48\x8D\x94\x24\x80\x00\x00\x00\x48\x8D\x8C\x24\x88\x00\x00\x00\x48\xB8\xA0\x7D....\x00\x00\xFF\xD0    Mimikatz_memssp_hookfn
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_invoke_mimikatz.yar
+
+TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAEAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm ascii    Mimikatz_InvokeMimikatz 1
+Write-BytesToMemory -Bytes $Shellcode1 -MemoryAddress $GetCommandLineWAddrTemp fullword ascii    Mimikatz_InvokeMimikatz 2
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_kirbi_mimkatz.yar
+
+\x76\x82..\x30\x82..\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x16   Mimikatz_Kirbi_Ticket 1
+\x76\x84....\x30\x84....\xa0\x84\x00\x00\x00\x03\x02\x01\x05\xa1\x84\x00\x00\x00\x03\x02\x01\x16   Mimikatz_Kirbi_Ticket 2
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_metasploit_payloads.yar
+
+\x0c\x8b\x52\x14\x8b\x72\x28\x0f\xb7\x4a\x26\x31\xff\xac\x3c\x61   Metasploit_MsfPayload 1
+\x01\xc7\x38\xe0\x75\xf6\x03\x7d\xf8\x3b\x7d\x24\x75\xe4\x58\x8b   Metasploit_MsfPayload 2
+\x01\xd0\x89\x44\x24\x24\x5b\x5b\x61\x59\x5a\x51\xff\xe0\x5f\x5f   Metasploit_MsfPayload 3
+
+\x6D\x65\x74\x73\x72\x76\x2E\x64\x6C\x6C\x00\x00\x52\x65\x66\x6C\x65\x63\x74\x69\x76\x65\x4C\x6F\x61\x64\x65\x72   Metasploit_Meterpreter_InMemory 1
+metsrv.x64.dll ascii fullword   Metasploit_Meterpreter_InMemory 2
+WS2_32.dll ascii fullword   Metasploit_Meterpreter_InMemory 3
+ReflectiveLoader ascii fullword   Metasploit_Meterpreter_InMemory 4
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_p0wnshell.yar
+
+Now if we point Firefox to http://127.0.0.1 fullword ascii    P0wnShell String 1
+powercat -l -v -p fullword ascii    P0wnShell String 2
+P0wnedListener fullword ascii    P0wnShell String 3
+EncodedPayload.bat fullword ascii    P0wnShell String 4
+powercat -c fullword ascii    P0wnShell String 5
+Program.P0wnedPath() ascii    P0wnShell String 6
+Invoke-PowerShellTcpOneLine fullword ascii    P0wnShell String 7
+Invoke-TokenManipulation fullword ascii    P0wnShell String 8
+windows/meterpreter fullword ascii    P0wnShell String 9
+lsadump::dcsync fullword ascii    P0wnShell String 10
+p0wnedShellx86 fullword ascii    P0wnShell String 11
+p0wnedShellx64 fullword ascii    P0wnShell String 12
+Invoke_PsExec() fullword ascii    P0wnShell String 13
+Invoke-Mimikatz fullword ascii    P0wnShell String 14
+Invoke_Shellcode() fullword ascii    P0wnShell String 15
+Invoke-ReflectivePEInjection ascii    P0wnShell String 16
+Invoke-Tater fullword ascii    P0wnShell String 17
+P0wnedListener.Execute(WPAD_Proxy); fullword ascii    P0wnShell String 18
+-SpooferIP ascii    P0wnShell String 19
+TaterCommand() ascii    P0wnShell String 20
+Pshell.RunPSCommand(Whoami); fullword ascii    P0wnShell String 21
+If succeeded this exploit should popup a System CMD Shell fullword ascii    P0wnShell String 22
+Oq02AB+LCAAAAAAABADs/QkW3LiOLQBuRUsQR1H731gHMQOkFGFnvvrdp/O4sp6tkDiAIIjhAryu4z6PVOtxHuXz3/xT6X9za/Df/Hsa/JT/9Pjgb/+kPPhv9Sjp01Wf wide    P0wnShell String 23
+Invoke-TokenManipulation wide    P0wnShell String 24
+-CreateProcess "cmd.exe" -Username "nt authority\system" fullword wide    P0wnShell String 25
+CommandShell with Local Administrator privileges :) fullword wide    P0wnShell String 26
+Invoke-shellcode -Payload windows/meterpreter/reverse_https -Lhost fullword wide    P0wnShell String 27
+Invoke_ReflectivePEInjection fullword wide    P0wnShell String 28
+p0wnedShell> fullword wide    P0wnShell String 29
+Resources.Get_PassHashes fullword wide    P0wnShell String 30
+Invoke_CredentialsPhish fullword wide    P0wnShell String 31
+Invoke_Shellcode fullword wide    P0wnShell String 32
+Resources.Invoke_TokenManipulation fullword wide    P0wnShell String 33
+Resources.Port_Scan fullword wide    P0wnShell String 34
+Invoke_PowerUp fullword wide    P0wnShell String 35
+Oq02AB+LCAAAAAAABADs/QkW3LiOLQBuRUsQR1H731gHMQOkFGFnvvrdp/O4sp6tkDiAIIjhAryu4z6PVOtxHuXz3/xT6X9za/Df/Hsa/JT/9 ascii    P0wnShell String 36
+wpoWAB+LCAAAAAAABADs/QeyK7uOBYhORUNIenL+E2vBA0ympH3erY4f8Tte3TpbUiY9YRbcGK91vVKtr+tV3v/B/yr/m1vD/+DvNOVb+V/f ascii    P0wnShell String 37
+mo0MAB+LCAAAAAAABADsXQl24zqu3YqXII6i9r+xJ4AACU4SZcuJnVenf/9OxbHEAcRwcQGu62NbHsrax/Iw+3/hP5b+VzuH/4WfVeDf8n98 ascii    P0wnShell String 38
+LE4CAB+LCAAAAAAABADsfQmW2zqu6Fa8BM7D/jf2hRmkKNuVm/Tt9zunkipb4giCIGb2/prhFUt5hVe+/sNP4b+pVvwPn+OQp/LT9ge/+ ascii    P0wnShell String 39
+XpMCAB+LCAAAAAAABADsfQeWIzmO6FV0hKAn73+xL3iAwVAqq2t35r/tl53VyhCDFoQ3Y7zW9Uq1vq5Xef/CT+X/59bwFz6nKU/lp+8P/ ascii    P0wnShell String 40
+STwAAB+LCAAAAAAABADtWwmy6yoO3YqXgJjZ/8ZaRwNgx/HNfX/o7qqUkxgzCM0SmLR2jHBQzkc4En9xZbvHUuSLMnWv9ateK/70ilStR ascii    P0wnShell String 41
+namespace p0wnedShell fullword ascii    P0wnShell String 42
+Program.P0wnedPath() fullword ascii    P0wnShell String 43
+namespace p0wnedShell fullword ascii    P0wnShell String 44
+H4sIAAAAAAAEAO1YfXRUx3WflXalFazQgiVb5nMVryzxIbGrt/rcFRZIa1CQYEFCQnxotUhP2pX3Q337HpYotCKrPdbmoQQnkOY0+BQCNKRpe ascii    P0wnShell String 45
+[+] For this attack to succeed, you need to have Admin privileges. fullword ascii    P0wnShell String 46
+[+] This is not a valid hostname, please try again fullword ascii    P0wnShell String 47
+[+] First return the name of our current domain. fullword ascii    P0wnShell String 48
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_powerkatz.yar
+
+%3u - Directory '%s' (*.kirbi) fullword wide    P0werKatz 1
+%*s  pPublicKey         : fullword wide    P0werKatz 2
+<3 eo.oe ~ ANSSI E> fullword wide    P0werKatz 3
+\*.kirbi fullword wide    P0werKatz 4
+kuhl_m_lsadump_getUsersAndSamKey ; kull_m_registry_RegOpenKeyEx SAM Accounts (0x%08x) fullword wide    P0werKatz 5
+kuhl_m_lsadump_getComputerAndSyskey ; kuhl_m_lsadump_getSyskey KO fullword wide    P0werKatz 6
+
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_solarwinds_sunburst.yar
+
+U4qpjjbQtUzUTdONrTY2q42pVapRgooABYxQuIZmtUoA wide    APT_Backdoor_SUNBURST Type 1 String 1
+\x5C\x7B\x5B\x30\x2D\x39\x61\x2D\x66\x2D\x5D\x7B\x33\x36\x7D\x5C\x7D\x22\x7C\x22\x5B\x30\x2D\x39\x61\x2D\x66\x5D\x7B\x33\x32\x7D\x22\x7C\x22\x5B\x30\x2D\x39\x61\x2D\x66\x5D\x7B\x31\x36\x7D    APT_Backdoor_SUNBURST Type 1 String 2
+U3ItS80rCaksSFWyUvIvyszPU9IBAA== wide    APT_Backdoor_SUNBURST Type 1 String 3
+\x22\x45\x76\x65\x6E\x74\x54\x79\x70\x65\x22\x3A\x22\x4F\x72\x69\x6F\x6E\x22\x2C    APT_Backdoor_SUNBURST Type 1 String 4
+U3ItS80r8UvMTVWyUgKzfRPzEtNTi5R0AA== wide    APT_Backdoor_SUNBURST Type 1 String 5
+\x22\x45\x76\x65\x6E\x74\x4E\x61\x6D\x65\x22\x3A\x22\x45\x76\x65\x6E\x74\x4D\x61\x6E\x61\x67\x65\x72\x22\x2C     APT_Backdoor_SUNBURST Type 1 String 6
+U/JNLS5OTE9VslKqNqhVAgA= wide    APT_Backdoor_SUNBURST Type 1 String 7
+\x22\x4D\x65\x73\x73\x61\x67\x65\x22\x3A\x22\x7B\x30\x7D\x22     APT_Backdoor_SUNBURST Type 1 String 8
+\x67\x19\xD8\xA7\x3B\x90\xAC\x5B     APT_Backdoor_SUNBURST Type 1 String 9
+
+
+0y3Kzy8BAA== wide   APT_Backdoor_SUNBURST Type 2 String 1
+S8vPKynWL89PS9OvNqjVrTYEYqNa3fLUpDSgTLVxrR5IzggA wide   APT_Backdoor_SUNBURST Type 2 String 2
+S8vPKynWL89PS9OvNqjVrTYEYqPaauNaPZCYEQA= wide   APT_Backdoor_SUNBURST Type 2 String 3
+C88sSs1JLS4GAA== wide   APT_Backdoor_SUNBURST Type 2 String 4
+C/UEAA== wide   APT_Backdoor_SUNBURST Type 2 String 5
+C89MSU8tKQYA wide   APT_Backdoor_SUNBURST Type 2 String 6
+8wvwBQA= wide   APT_Backdoor_SUNBURST Type 2 String 7
+cyzIz8nJBwA= wide   APT_Backdoor_SUNBURST Type 2 String 8
+c87JL03xzc/LLMkvysxLBwA= wide   APT_Backdoor_SUNBURST Type 2 String 9
+88tPSS0GAA== wide   APT_Backdoor_SUNBURST Type 2 String 10
+C8vPKc1NLQYA wide   APT_Backdoor_SUNBURST Type 2 String 11
+88wrSS1KS0xOLQYA wide   APT_Backdoor_SUNBURST Type 2 String 12
+c87PLcjPS80rKQYA wide   APT_Backdoor_SUNBURST Type 2 String 13
+Ky7PLNAvLUjRBwA= wide   APT_Backdoor_SUNBURST Type 2 String 14
+06vIzQEA wide   APT_Backdoor_SUNBURST Type 2 String 15
+0y3NyyxLLSpOzIlPTgQA wide   APT_Backdoor_SUNBURST Type 2 String 16
+001OBAA= wide   APT_Backdoor_SUNBURST Type 2 String 17
+0y0oysxNLKqMT04EAA== wide   APT_Backdoor_SUNBURST Type 2 String 18
+0y3JzE0tLknMLQAA wide   APT_Backdoor_SUNBURST Type 2 String 19
+003PyU9KzAEA wide   APT_Backdoor_SUNBURST Type 2 String 20
+0y1OTS4tSk1OBAA= wide   APT_Backdoor_SUNBURST Type 2 String 21
+K8jO1E8uytGvNqitNqytNqrVA/IA wide   APT_Backdoor_SUNBURST Type 2 String 22
+c8rPSQEA wide   APT_Backdoor_SUNBURST Type 2 String 23
+c8rPSfEsSczJTAYA wide   APT_Backdoor_SUNBURST Type 2 String 24
+c60oKUp0ys9JAQA= wide   APT_Backdoor_SUNBURST Type 2 String 25
+c60oKUp0ys9J8SxJzMlMBgA= wide   APT_Backdoor_SUNBURST Type 2 String 26
+8yxJzMlMBgA= wide   APT_Backdoor_SUNBURST Type 2 String 27
+88lMzygBAA== wide   APT_Backdoor_SUNBURST Type 2 String 28
+88lMzyjxLEnMyUwGAA== wide   APT_Backdoor_SUNBURST Type 2 String 29
+C0pNL81JLAIA wide   APT_Backdoor_SUNBURST Type 2 String 30
+C07NzXTKz0kBAA== wide   APT_Backdoor_SUNBURST Type 2 String 31
+C07NzXTKz0nxLEnMyUwGAA== wide   APT_Backdoor_SUNBURST Type 2 String 32
+yy9IzStOzCsGAA== wide   APT_Backdoor_SUNBURST Type 2 String 33
+y8svyQcA wide   APT_Backdoor_SUNBURST Type 2 String 34
+SytKTU3LzysBAA== wide   APT_Backdoor_SUNBURST Type 2 String 35
+C84vLUpOdc5PSQ0oygcA wide   APT_Backdoor_SUNBURST Type 2 String 36
+C84vLUpODU4tykwLKMoHAA== wide   APT_Backdoor_SUNBURST Type 2 String 37
+C84vLUpO9UjMC07MKwYA wide   APT_Backdoor_SUNBURST Type 2 String 38
+C84vLUpO9UjMC04tykwDAA== wide   APT_Backdoor_SUNBURST Type 2 String 39
+
+
+C7 44 24. 80 00 00 00 [0-64] BA 00 00 00 80 [0-32] 48 8D 0D [4-32] FF 15 [4] 48 83 F8 FF [2-64] 41 B8 40 00 00 00 [0-64] FF 15 [4-5] 85 C0 7?. 80 3D [4] FF APT_Dropper_Raw64_TEARDROP String 1
+80 3D [4] D8 [2-32] 41 B8 04 00 00 00 [0-32] C7 44 24. 4A 46 49 46 [0-32] E8 [4-5] 85 C0 [2-32] C6 05 [4] 6A C6 05 [4] 70 C6 05 [4] 65 C6 05 [4] 67 APT_Dropper_Raw64_TEARDROP String 2
+BA [4] 48 89. E8 [4] 41 B8 [4] 48 89. 48 89. E8 [4] 85 C0 7? [1-32] 8B 44 24. 48 8B. 24 [1-16] 48 01 C8 [0-32] FF D0 APT_Dropper_Raw64_TEARDROP String 3
+
+
+\x48\x89\xC8\x45\x0F\xB6\x4C\x0A\x30 APT_Dropper_Win64_TEARDROP String 1
+\x48\xC1\xE0\x04\x83\xC3\x01\x48\x01\xE8\x8B\x48\x28\x8B\x50\x30\x44\x8B\x40\x2C\x48\x01\xF1\x4C\x01\xFA APT_Dropper_Win64_TEARDROP String 2
+\xC6\x05....\x6A\xC6\x05....\x70\xC6\x05....\x65\xC6\x05....\x67 APT_Dropper_Win64_TEARDROP String 3
+\x48\x89\xC8\x45\x0F\xB6\x4C\x0A\x30\x48\x89\xCE\x44\x89\xCF\x48\xF7\xE3\x48\xC1\xEA\x05\x48\x8D\x04\x92\x48\x8D\x04\x42\x48\xC1\xE0\x04\x48\x29\xC6 APT_Dropper_Win64_TEARDROP String 4
+\x53\x4F\x46\x54\x57\x41\x52\x45....\x66\x74\x5C\x43....\x00 APT_Dropper_Win64_TEARDROP String 5
